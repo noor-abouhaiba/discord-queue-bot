@@ -1,4 +1,4 @@
-const botconfig = require("./config/botConfig.json");
+// const botconfig = require("./config/botConfig.json");
 // const tokenconfig = require("./config/token.json");
 const Discord = require("discord.js");
 
