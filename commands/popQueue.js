@@ -24,15 +24,18 @@ module.exports.run = async (priority_queue, bot, message, args) => {
         let frontUser = priority_queue.peek();
         priority_queue.dequeue();
 
-        await message.channel.send(`${frontUser} \`it's time, be ready and join voice within 5 minutes. Don't throw, godspeed.\``);
+        await message.channel.send(`${frontUser} \`it's time, be ready and join voice within 5 minutes. Don't throw :)\``);
     }
     else {
+        if (isNaN(numToDraft)) {
+            return message.reply((`\`The given draft count is not a valid number, dumb bitch\``));
+        }
         numToDraft = parseInt(numToDraft);
         for(let i = 0; i < numToDraft && !priority_queue.isEmpty(); i++) {
             let frontUser = priority_queue.peek();
             priority_queue.dequeue();
 
-            await message.channel.send(`${frontUser} \`it's time, be ready and join voice within 5 minutes. Don't throw, godspeed.\``);
+            await message.channel.send(`${frontUser} \`it's time, be ready and join voice within 5 minutes. Don't throw :)\``);
         }
     }
     return bot.commands.get("display").run(priority_queue, bot, message, args);
