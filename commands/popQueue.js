@@ -24,7 +24,7 @@ module.exports.run = async (priority_queue, bot, message, args) => {
         let frontUser = priority_queue.peek();
         priority_queue.dequeue();
 
-        await message.channel.send(`${frontUser} \`it's time, be ready and join voice within 5 minutes. Don't throw, godspeed.\``);
+        await message.channel.send(`${frontUser} \`it's time, be ready and join voice within 5 minutes. Don't throw :)\``);
     }
     else {
         numToDraft = parseInt(numToDraft);
