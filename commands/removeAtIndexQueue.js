@@ -36,7 +36,7 @@ module.exports.run = async (priority_queue, bot, message, args) => {
     }
 
     if (!senderHasSuperuser) {
-        return message.reply("dumb bitch");
+        return message.reply("\`you don't have the necessary permissions to perform this action, dumb bitch\`");
     }
 
     let userIndex = 1;
