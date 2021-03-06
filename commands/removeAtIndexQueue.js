@@ -48,6 +48,9 @@ module.exports.run = async (priority_queue, bot, message, args) => {
     else if (indexToRemoveAt > priority_queue.size()) {
         return message.reply(`\`The current queue size is less than the specified index, dumb bitch\``);
     }
+    else if (isNaN(indexToRemoveAt)) {
+        return message.reply(`\`The given index is not a valid number, dumb bitch\``);
+    }
 
     console.log(`${userIndex} : ${indexToRemoveAt}`);
 
