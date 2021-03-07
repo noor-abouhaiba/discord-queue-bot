@@ -7,8 +7,8 @@ module.exports.run = async (priority_queue, bot, message, args) => {
 
     let queueUsers = Array();
 
-    priority_queue.forEach(user => {
-        queueUsers.push(user.user);
+    await priority_queue.forEach(user => {
+        queueUsers.push(user.user.username);
     });
 
     console.log("Users in queue: " + queueUsers);
@@ -22,7 +22,7 @@ module.exports.run = async (priority_queue, bot, message, args) => {
     console.log(queueUsers.toString());
 
     let queueUsers1 = Array();
-    queueUsers.forEach(user => {
+    await queueUsers.forEach(user => {
         queueUsers1.push(`**${userIndex++}: ** ${user}\n`)
     });
 
@@ -31,7 +31,7 @@ module.exports.run = async (priority_queue, bot, message, args) => {
         display_queue_embed.addField(`Users: `, `${queueUsers1}`);
     }
 
-    return message.channel.send(display_queue_embed);
+    return await message.channel.send(display_queue_embed);
 };
 
 module.exports.help = {

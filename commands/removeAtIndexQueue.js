@@ -36,25 +36,25 @@ module.exports.run = async (priority_queue, bot, message, args) => {
     }
 
     if (!senderHasSuperuser) {
-        return message.reply("\`you don't have the necessary permissions to perform this action, dumb bitch\`");
+        return await message.reply("\`you don't have the necessary permissions to perform this action, dumb bitch\`");
     }
 
     let userIndex = 1;
     let indexToRemoveAt = args[1];
 
     if (!indexToRemoveAt) {
-        return message.reply("\`which index? dumb bitch\`");
+        return await message.reply("\`which index? dumb bitch\`");
     }
     else if (indexToRemoveAt > priority_queue.size()) {
-        return message.reply(`\`The current queue size is less than the specified index, dumb bitch\``);
+        return await message.reply(`\`The current queue size is less than the specified index, dumb bitch\``);
     }
     else if (isNaN(indexToRemoveAt)) {
-        return message.reply(`\`The given index is not a valid number, dumb bitch\``);
+        return await message.reply(`\`The given index is not a valid number, dumb bitch\``);
     }
 
     console.log(`${userIndex} : ${indexToRemoveAt}`);
 
-    priority_queue.forEach(user => {
+    await priority_queue.forEach(user => {
         console.log(`current index ${userIndex}`);
         // Removes user from queue, checks equivalence to some constant (name/id)
         if (userIndex.toString() !== indexToRemoveAt) {
@@ -66,16 +66,16 @@ module.exports.run = async (priority_queue, bot, message, args) => {
         userIndex++;
     });
 
-    priority_queue.clear();
-    newPQ.forEach(user => {
+    await priority_queue.clear();
+    await newPQ.forEach(user => {
         priority_queue.enqueue(user);
     });
 
-    priority_queue.forEach(user => {
+    await priority_queue.forEach(user => {
         console.log(`currentUser ${user.user.username}`)
     });
 
-    return bot.commands.get("display").run(priority_queue, bot, message, args);
+    return await bot.commands.get("display").run(priority_queue, bot, message, args);
 };
 
 module.exports.help = {

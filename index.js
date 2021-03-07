@@ -16,8 +16,12 @@ function compare(user1, user2) {
     user1.roles.cache.forEach(role => {if(role.name === "Superuser") user1HasSuperuser = true});
     user2.roles.cache.forEach(role => {if(role.name === "Superuser") user2HasSuperuser = true});
 
+    if (user1.hasPermission("ADMINISTRATOR")) user1HasSuperuser = true;
+    if (user2.hasPermission("ADMINISTRATOR")) user2HasSuperuser = true;
+
     console.log("user1 (" + user1.user.username + ") " + user1HasSuperuser);
     console.log("user2 (" + user2.user.username + ") " + user2HasSuperuser);
+
     if (!user1HasSuperuser && user2HasSuperuser) {
         return -1;
     } if (user1HasSuperuser && !user2HasSuperuser) {
@@ -80,7 +84,7 @@ bot.on('message', async message => {
     let command_file = bot.commands.get(command);
 
     if (command_file) {
-        command_file.run(priority_queue, bot, message, args);
+        await command_file.run(priority_queue, bot, message, args);
     }
 });
 
